@@ -1,0 +1,51 @@
+#define TIMEOUT 30000
+#define WAITING_TIME 1000
+
+#define ULTRASONIC 12
+#define LEFT_IR 
+#define RIGHT_IR
+// If you are using PORT 1 of the mCore, the ultrasonic sensor is connected to digital pin 12
+// If you are using PORT 2 of the mCore, the ultrasonic sensor is connected to digital pin 10
+
+void setup() {
+  // Set up serial communication
+  Serial.begin(9600);
+}
+
+void loop() {
+  // The following code runs repeatedly:
+  pinMode(ULTRASONIC, OUTPUT);
+  pinMode(LEFT_IR, INPUT);
+  pinMode(RIGHT_IR, INPUT);
+
+  digitalWrite(ULTRASONIC, LOW);
+  delayMicroseconds(2);
+  digitalWrite(ULTRASONIC, HIGH);
+  delayMicroseconds(2);
+  digitalWrite(ULTRASONIC, LOW);
+
+  pinMode(ULTRASONIC, INPUT);
+
+  long duration = pulseIn(ULTRASONIC, HIGH, TIMEOUT);
+  
+  //need to find the analogReadvalue for 6cm and below and when it gets below this number, it will shift 
+  long left_distance = analogRead(LEFT_IR);
+  long right_distance = analogRead(RIGHT_IR);
+
+  if (left_distance < 5cm) {
+    //shift right
+  } if (right_distance < 5cm {
+    //shift left
+  } 
+  if (front_distance < 5cm) {
+    //stop and call the function for colour sensing challenge
+
+
+  Serial.print("Duration: ");
+  Serial.print(duration);
+  Serial.println(" microseconds");
+
+  delay(WAITING_TIME);
+}
+ 
+
